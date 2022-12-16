@@ -20,6 +20,10 @@ export const StyledButton = styled.button`
   color: #000;
   font-weight: bold;
 
+  :disabled {
+    opacity: 0.1;
+  }
+
   :after {
     position: absolute;
     content: '';

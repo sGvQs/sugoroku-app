@@ -8,10 +8,24 @@ export const StyledBody = styled.div`
 export const StyledContentWrap = styled.div`
   height: 100vh;
   width: 100vw;
-  background-color: whitesmoke;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const StyledContents = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 5px;
+  gap: 30px;
+`;
+
+export const StyledInputArea = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
 `;

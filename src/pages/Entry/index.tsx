@@ -2,10 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../../components/common/Button';
 import { Input } from '../../components/common/Input';
+import { LottiePath } from '../../components/types';
 
-import { StyledBody, StyledContentWrap } from './styled';
+import lottie from 'lottie-web';
+
+import {
+  StyledBody,
+  StyledContentWrap,
+  StyledContents,
+  StyledInputArea,
+} from './styled';
 
 import { useSugorokuState } from '../../contexts';
+import { Lottie } from '../../components/common/Lottie';
 
 export const Entry = () => {
   const { mainPlayerName, setMainPlayerName, subPlayerName, setSubPlayerName } =
@@ -21,57 +30,72 @@ export const Entry = () => {
     setSubName(e.currentTarget.value);
   };
 
+  lottie.loadAnimation({
+    container: document.getElementById('walking-man') as Element, // アニメーションを追加する要素
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: '/walking-man.json',
+  });
+
   return (
     <StyledBody>
       <StyledContentWrap>
         {configStatus === 0 && (
-          <>
-            <h1>あなたのなまえを入れてね</h1>
-            <Input onChange={(e) => sendMainPlayerName(e)} />
-            {mainName && (
+          <StyledContents>
+            <Lottie path={LottiePath.BLACK_RUN} />
+            <StyledInputArea>
+              <Input
+                onChange={(e) => sendMainPlayerName(e)}
+                placeholder={'なまえは？？'}
+              />
               <Button
                 label={'けってい'}
                 onClickHandler={() => {
                   setMainPlayerName(mainName);
                   setConfigStatus((c) => c + 1);
                 }}
+                disabled={!!!mainName}
               />
-            )}
-            <h2>確定を押したらとなりの人に渡してね</h2>
-          </>
+            </StyledInputArea>
+          </StyledContents>
         )}
         {configStatus === 1 && (
-          <>
+          <StyledContents>
             <h1>となりのひとですか？</h1>
             <Button
               label={'はい'}
               onClickHandler={() => setConfigStatus((c) => c + 1)}
             />
-          </>
+          </StyledContents>
         )}
         {configStatus === 2 && (
-          <>
-            <h1>あなたのなまえを入れてね</h1>
-            <Input onChange={(e) => sendSubPlayerName(e)} />
-            {subName && (
-              <Button
-                label={'けってい'}
-                onClickHandler={() => {
-                  setSubPlayerName(subName);
-                  setConfigStatus((c) => c + 1);
-                }}
-              />
-            )}
-          </>
+          <StyledContents>
+            <Lottie path={LottiePath.ASTRONAUT_RUN} />
+            <Input
+              onChange={(e) => sendSubPlayerName(e)}
+              placeholder={'なまえは？？'}
+            />
+            <Button
+              label={'けってい'}
+              onClickHandler={() => {
+                setSubPlayerName(subName);
+                setConfigStatus((c) => c + 1);
+              }}
+              disabled={!!!subName}
+            />
+          </StyledContents>
         )}
         {configStatus === 3 && (
-          <>
+          <StyledContents>
             <h2>PLAYER1: {mainPlayerName}</h2>
+            <Lottie path={LottiePath.BLACK_RUN} />
             <h2>PLAYER2: {subPlayerName}</h2>
+            <Lottie path={LottiePath.ASTRONAUT_RUN} />
             <Link to={`/GameStart`}>
               <Button label={'はじめる'} />
             </Link>
-          </>
+          </StyledContents>
         )}
       </StyledContentWrap>
     </StyledBody>
