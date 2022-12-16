@@ -1,12 +1,13 @@
 import lottie from 'lottie-web';
 import React from 'react';
-import { StyledLottie } from './styled';
+import { StyledLottie, LottieSizeProps } from './styled';
 
 type LottieProps = {
   path: string;
+  size?: LottieSizeProps;
 };
 
-export const Lottie: React.FC<LottieProps> = ({ path }) => {
+export const Lottie: React.FC<LottieProps> = ({ path, size }) => {
   const [containerEl, setContainerEl] = React.useState<HTMLDivElement | null>();
 
   React.useMemo(() => {
@@ -34,7 +35,7 @@ export const Lottie: React.FC<LottieProps> = ({ path }) => {
 
   return (
     <>
-      <StyledLottie ref={handleRef}></StyledLottie>
+      <StyledLottie ref={handleRef} size={size}></StyledLottie>
     </>
   );
 };

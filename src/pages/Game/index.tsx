@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom';
+import { Button } from '../../components/common/Button';
+import { StyledBody, StyledContentWrap } from './styled';
 
 export const Game = () => {
   return (
-    <>
-      <Link to={`/`}>タイトルに戻る</Link>
-      <h1>ゲーム</h1>
-    </>
+    <StyledBody>
+      <StyledContentWrap>
+        <Link to={`/`}>
+          <Button label={'タイトルに戻る'} />
+        </Link>
+      </StyledContentWrap>
+    </StyledBody>
   );
 };
