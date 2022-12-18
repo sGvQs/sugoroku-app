@@ -1,12 +1,12 @@
 import React from 'react';
 
 type SugorokuValueType = {
-  mainPlayerName: string | undefined;
+  mainPlayer: string | undefined;
   mainPlayerStatus: number;
-  subPlayerName: string | undefined;
+  subPlayer: string | undefined;
   subPlayerStatus: number;
-  setSubPlayerName: React.Dispatch<React.SetStateAction<string | undefined>>;
-  setMainPlayerName: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setSubPlayer: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setMainPlayer: React.Dispatch<React.SetStateAction<string | undefined>>;
   setMainPlayerStatus: React.Dispatch<React.SetStateAction<number>>;
   setSubPlayerStatus: React.Dispatch<React.SetStateAction<number>>;
 };
@@ -30,19 +30,19 @@ export const useSugorokuState = (): SugorokuValueType => {
 };
 
 export const SugorokuStateProvider: React.FC<Children> = ({ children }) => {
-  const [mainPlayerName, setMainPlayerName] = React.useState<string>();
+  const [mainPlayer, setMainPlayer] = React.useState<string>();
   const [mainPlayerStatus, setMainPlayerStatus] = React.useState<number>(0);
-  const [subPlayerName, setSubPlayerName] = React.useState<string>();
+  const [subPlayer, setSubPlayer] = React.useState<string>();
   const [subPlayerStatus, setSubPlayerStatus] = React.useState<number>(0);
 
   const providerValue = {
-    mainPlayerName,
+    mainPlayer,
     mainPlayerStatus,
-    subPlayerName,
+    subPlayer,
     subPlayerStatus,
-    setMainPlayerName,
+    setMainPlayer,
     setMainPlayerStatus,
-    setSubPlayerName,
+    setSubPlayer,
     setSubPlayerStatus,
   };
 

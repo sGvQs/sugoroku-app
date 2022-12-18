@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../common/Button';
-import { Input } from '../common/Input';
 import { LottiePath } from '../types';
 import { useSugorokuState } from '../../contexts';
 import { Lottie } from '../Lottie';
@@ -16,38 +15,59 @@ import {
   StyledTitleArea,
   StyledParagraph,
 } from './styled';
+import { ChracterSelection } from '../CharacterSelection';
 
 type EntryViewProps = {
-  mainName: string | undefined;
-  subName: string | undefined;
   configStatus: number;
   setConfigStatus: React.Dispatch<React.SetStateAction<number>>;
-  setMainName: React.Dispatch<React.SetStateAction<string | undefined>>;
-  setSubName: React.Dispatch<React.SetStateAction<string | undefined>>;
 };
 
 export const EntryView: React.FC<EntryViewProps> = ({
-  mainName,
-  subName,
   configStatus,
   setConfigStatus,
-  setMainName,
-  setSubName,
 }) => {
-  const { mainPlayerName, setMainPlayerName, subPlayerName, setSubPlayerName } =
+  const { mainPlayer, setMainPlayer, subPlayer, setSubPlayer } =
     useSugorokuState();
 
-  const sendMainPlayerName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setMainName(e.currentTarget.value);
+  const [currentMainCharacterNumber, setCurrentMainCharacterNumber] =
+    React.useState<number>(0);
+  const [currentSubCharacterNumber, setCurrentSubCharacterNumber] =
+    React.useState<number>(0);
+
+  enum CharacterSetType {
+    MAIN = 'main',
+    SUB = 'sub',
+  }
+
+  const setCharactor = (currentCharacter: number, type: CharacterSetType) => {
+    if (type === CharacterSetType.MAIN) {
+      setMainPlayer(CharactorFinder(currentCharacter));
+    } else if (type === CharacterSetType.SUB) {
+      setSubPlayer(CharactorFinder(currentCharacter));
+    } else {
+      return;
+    }
   };
-  const sendSubPlayerName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSubName(e.currentTarget.value);
+
+  const CharactorFinder = (currentCharactor: number) => {
+    switch (currentCharactor) {
+      case 0:
+        return LottiePath.ANGRY_RUN;
+      case 1:
+        return LottiePath.THIN_RUN;
+      case 2:
+        return LottiePath.ASTRONAUT_RUN;
+      case 3:
+        return LottiePath.BLACK_RUN;
+      case 4:
+        return LottiePath.SMILY_RUN;
+      default:
+        return;
+    }
   };
 
   const initNames = () => {
     setConfigStatus(0);
-    setMainPlayerName(undefined);
-    setSubPlayerName(undefined);
   };
 
   return (
@@ -55,21 +75,18 @@ export const EntryView: React.FC<EntryViewProps> = ({
       {configStatus === 0 && (
         <StyledContents>
           <StyledTitleArea>
-            <p>PLAYER1</p>
-            <Lottie path={LottiePath.BLACK_RUN} />
+            <ChracterSelection
+              currentCharacterNumber={currentMainCharacterNumber}
+              setCurrentCharacterNumber={setCurrentMainCharacterNumber}
+            />
           </StyledTitleArea>
           <StyledInputArea>
-            <Input
-              onChange={(e) => sendMainPlayerName(e)}
-              placeholder={'なまえは？？'}
-            />
             <Button
               label={'けってい'}
               onClickHandler={() => {
-                setMainPlayerName(mainName);
                 setConfigStatus((c) => c + 1);
+                setCharactor(currentMainCharacterNumber, CharacterSetType.MAIN);
               }}
-              disabled={!!!mainName}
             />
           </StyledInputArea>
         </StyledContents>
@@ -86,21 +103,18 @@ export const EntryView: React.FC<EntryViewProps> = ({
       {configStatus === 2 && (
         <StyledContents>
           <StyledTitleArea>
-            <p>PLAYER2</p>
-            <Lottie path={LottiePath.ASTRONAUT_RUN} />
+            <ChracterSelection
+              currentCharacterNumber={currentSubCharacterNumber}
+              setCurrentCharacterNumber={setCurrentSubCharacterNumber}
+            />
           </StyledTitleArea>
           <StyledInputArea>
-            <Input
-              onChange={(e) => sendSubPlayerName(e)}
-              placeholder={'なまえは？？'}
-            />
             <Button
               label={'けってい'}
               onClickHandler={() => {
-                setSubPlayerName(subName);
                 setConfigStatus((c) => c + 1);
+                setCharactor(currentSubCharacterNumber, CharacterSetType.SUB);
               }}
-              disabled={!!!subName}
             />
           </StyledInputArea>
         </StyledContents>
@@ -109,12 +123,12 @@ export const EntryView: React.FC<EntryViewProps> = ({
         <StyledContents>
           <StyledFinalContents>
             <StyledFinalSideContent>
-              <StyledParagraph>PLAYER1: {mainPlayerName}</StyledParagraph>
-              <Lottie path={LottiePath.BLACK_RUN} size={'small'} />
+              <StyledParagraph>PLAYER1</StyledParagraph>
+              {mainPlayer && <Lottie path={mainPlayer} size={'small'} />}
             </StyledFinalSideContent>
             <StyledFinalSideContent>
-              <StyledParagraph>PLAYER2: {subPlayerName}</StyledParagraph>
-              <Lottie path={LottiePath.ASTRONAUT_RUN} size={'small'} />
+              <StyledParagraph>PLAYER2</StyledParagraph>
+              {subPlayer && <Lottie path={subPlayer} size={'small'} />}
             </StyledFinalSideContent>
           </StyledFinalContents>
           <StyledFinalButtonWrap>

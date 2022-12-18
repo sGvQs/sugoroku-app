@@ -16,7 +16,7 @@ export const StyledContents = styled.div`
   flex-direction: column;
   gap: 30px;
   @media screen and (min-width: 960px) {
-    gap: 10vh;
+    gap: 5vh;
   }
 `;
 
@@ -48,6 +48,7 @@ export const StyledTitleArea = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 5px;
 `;
 
 export const StyledInputArea = styled.div`
