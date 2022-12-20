@@ -1,4 +1,5 @@
 export enum LottiePath {
+  INTRODUCTION_CITY = '/Lottie/beautiful-city.json',
   WALKING_MAN = '/Lottie/walking-man.json',
   MOVING_CITY = '/Lottie/moving-city.json',
   MOVING_DICE = '/Lottie/test-color-dice.json',

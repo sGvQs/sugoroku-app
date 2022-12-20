@@ -1,12 +1,13 @@
 import React from 'react';
+import { LottiePath } from '../components/types';
 
 type SugorokuValueType = {
-  mainPlayer: string | undefined;
+  mainPlayer: LottiePath | undefined;
   mainPlayerStatus: number;
-  subPlayer: string | undefined;
+  subPlayer: LottiePath | undefined;
   subPlayerStatus: number;
-  setSubPlayer: React.Dispatch<React.SetStateAction<string | undefined>>;
-  setMainPlayer: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setSubPlayer: React.Dispatch<React.SetStateAction<LottiePath | undefined>>;
+  setMainPlayer: React.Dispatch<React.SetStateAction<LottiePath | undefined>>;
   setMainPlayerStatus: React.Dispatch<React.SetStateAction<number>>;
   setSubPlayerStatus: React.Dispatch<React.SetStateAction<number>>;
 };
@@ -30,9 +31,9 @@ export const useSugorokuState = (): SugorokuValueType => {
 };
 
 export const SugorokuStateProvider: React.FC<Children> = ({ children }) => {
-  const [mainPlayer, setMainPlayer] = React.useState<string>();
+  const [mainPlayer, setMainPlayer] = React.useState<LottiePath>();
   const [mainPlayerStatus, setMainPlayerStatus] = React.useState<number>(0);
-  const [subPlayer, setSubPlayer] = React.useState<string>();
+  const [subPlayer, setSubPlayer] = React.useState<LottiePath>();
   const [subPlayerStatus, setSubPlayerStatus] = React.useState<number>(0);
 
   const providerValue = {

@@ -18,7 +18,7 @@ const lottieSizeChanger = (size?: LottieSizeProps) => {
       `;
     case 'large':
       return css`
-        height: 200px;
+        height: 300px;
       `;
     default:
       return css`
