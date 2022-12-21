@@ -1,12 +1,15 @@
 import { LottiePath } from '../../types';
 import React from 'react';
+import { RatingDifficality } from '../../common/Rating';
 
 type CharacterDiscriptionProps = {
   path: LottiePath;
+  final: boolean;
 };
 
 export const CharacterDiscriptions: React.FC<CharacterDiscriptionProps> = ({
   path,
+  final,
 }) => {
   switch (path) {
     case LottiePath.ANGRY_RUN:
@@ -14,7 +17,7 @@ export const CharacterDiscriptions: React.FC<CharacterDiscriptionProps> = ({
         <>
           <h3>ブラウン</h3>
           <li>保守的な動き</li>
-          <li>中級者向け</li>
+          <RatingDifficality value={4} final={final} />
         </>
       );
     case LottiePath.THIN_RUN:
@@ -22,7 +25,7 @@ export const CharacterDiscriptions: React.FC<CharacterDiscriptionProps> = ({
         <>
           <h3>アンディー</h3>
           <li>平均的なカード</li>
-          <li>初心者向け</li>
+          <RatingDifficality value={2} final={final} />
         </>
       );
     case LottiePath.ASTRONAUT_RUN:
@@ -30,7 +33,7 @@ export const CharacterDiscriptions: React.FC<CharacterDiscriptionProps> = ({
         <>
           <h3>ジョンソン</h3>
           <li>ピンキリカード</li>
-          <li>中級者向け</li>
+          <RatingDifficality value={3} final={final} />
         </>
       );
     case LottiePath.BLACK_RUN:
@@ -38,7 +41,7 @@ export const CharacterDiscriptions: React.FC<CharacterDiscriptionProps> = ({
         <>
           <h3>ボブ</h3>
           <li>使いやすいカード</li>
-          <li>中級者向け</li>
+          <RatingDifficality value={3} final={final} />
         </>
       );
     case LottiePath.SMILY_RUN:
@@ -46,7 +49,7 @@ export const CharacterDiscriptions: React.FC<CharacterDiscriptionProps> = ({
         <>
           <h3>スマイリー</h3>
           <li>トリッキー</li>
-          <li>上級者向け</li>
+          <RatingDifficality value={5} final={final} />
         </>
       );
     default:

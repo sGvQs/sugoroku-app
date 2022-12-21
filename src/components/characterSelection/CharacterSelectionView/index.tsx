@@ -22,6 +22,7 @@ import {
 } from './styled';
 import { Selection } from '../Selection';
 import { CharacterDiscriptions } from '../CharacterDiscription';
+import { SelectionDialog } from '../SelectionDialog';
 
 type CharacterSelectionViewProps = {
   configStatus: number;
@@ -80,31 +81,9 @@ export const CharacterSelectionView: React.FC<CharacterSelectionViewProps> = ({
 
   return (
     <StyledContentWrap>
+      <SelectionDialog modalState={modalState} setModalState={setModalState} />
       {configStatus === 0 && (
         <StyledContents>
-          <Dialog
-            open={modalState}
-            onClose={() => setModalState((c) => !c)}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogTitle id="alert-dialog-title">
-              {"Use Google's location service?"}
-            </DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                Let Google help apps determine location. This means sending
-                anonymous location data to Google, even when no apps are
-                running.
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button
-                onClickHandler={() => setModalState((c) => !c)}
-                label={'Disagree'}
-              ></Button>
-            </DialogActions>
-          </Dialog>
           <StyledTitleArea>
             <h3>PLAYER1</h3>
             <Selection
@@ -160,7 +139,7 @@ export const CharacterSelectionView: React.FC<CharacterSelectionViewProps> = ({
               {mainPlayer && (
                 <>
                   <Lottie path={mainPlayer} size={'small'} />
-                  <CharacterDiscriptions path={mainPlayer} />
+                  <CharacterDiscriptions path={mainPlayer} final={true} />
                 </>
               )}
             </StyledFinalSideContent>
@@ -169,7 +148,7 @@ export const CharacterSelectionView: React.FC<CharacterSelectionViewProps> = ({
               {subPlayer && (
                 <>
                   <Lottie path={subPlayer} size={'small'} />
-                  <CharacterDiscriptions path={subPlayer} />
+                  <CharacterDiscriptions path={subPlayer} final={true} />
                 </>
               )}
             </StyledFinalSideContent>
