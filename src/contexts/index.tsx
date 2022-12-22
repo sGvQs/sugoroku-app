@@ -1,14 +1,31 @@
 import React from 'react';
+import { LottiePath } from '../types';
+
+type OptionsType = {
+  option1: number | null;
+  option2: number | null;
+  option3: number | null;
+  option4: number | null;
+  option5: number | null;
+};
 
 type SugorokuValueType = {
-  mainPlayerName: string | undefined;
+  mainPlayer: LottiePath | undefined;
   mainPlayerStatus: number;
-  subPlayerName: string | undefined;
+  subPlayer: LottiePath | undefined;
   subPlayerStatus: number;
-  setSubPlayerName: React.Dispatch<React.SetStateAction<string | undefined>>;
-  setMainPlayerName: React.Dispatch<React.SetStateAction<string | undefined>>;
+  mainPlayerOptions: OptionsType | undefined;
+  subPlayerOptions: OptionsType | undefined;
+  setSubPlayer: React.Dispatch<React.SetStateAction<LottiePath | undefined>>;
+  setMainPlayer: React.Dispatch<React.SetStateAction<LottiePath | undefined>>;
   setMainPlayerStatus: React.Dispatch<React.SetStateAction<number>>;
   setSubPlayerStatus: React.Dispatch<React.SetStateAction<number>>;
+  setMainPlayerOptions: React.Dispatch<
+    React.SetStateAction<OptionsType | undefined>
+  >;
+  setSubPlayerOptions: React.Dispatch<
+    React.SetStateAction<OptionsType | undefined>
+  >;
 };
 
 type Children = {
@@ -30,20 +47,27 @@ export const useSugorokuState = (): SugorokuValueType => {
 };
 
 export const SugorokuStateProvider: React.FC<Children> = ({ children }) => {
-  const [mainPlayerName, setMainPlayerName] = React.useState<string>();
+  const [mainPlayer, setMainPlayer] = React.useState<LottiePath>();
+  const [subPlayer, setSubPlayer] = React.useState<LottiePath>();
   const [mainPlayerStatus, setMainPlayerStatus] = React.useState<number>(0);
-  const [subPlayerName, setSubPlayerName] = React.useState<string>();
   const [subPlayerStatus, setSubPlayerStatus] = React.useState<number>(0);
+  const [mainPlayerOptions, setMainPlayerOptions] =
+    React.useState<OptionsType>();
+  const [subPlayerOptions, setSubPlayerOptions] = React.useState<OptionsType>();
 
   const providerValue = {
-    mainPlayerName,
+    mainPlayer,
     mainPlayerStatus,
-    subPlayerName,
+    subPlayer,
     subPlayerStatus,
-    setMainPlayerName,
+    mainPlayerOptions,
+    subPlayerOptions,
+    setMainPlayer,
     setMainPlayerStatus,
-    setSubPlayerName,
+    setSubPlayer,
     setSubPlayerStatus,
+    setMainPlayerOptions,
+    setSubPlayerOptions,
   };
 
   return (

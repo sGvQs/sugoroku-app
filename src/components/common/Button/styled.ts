@@ -1,11 +1,39 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const StyledButton = styled.button`
-  width: 130px;
-  height: 40px;
+type ButtonSize = 'small' | 'medium' | 'large';
+
+export type ButtonSizeProps = {
+  size?: ButtonSize;
+};
+
+const buttonSizeChanger = (size?: ButtonSize) => {
+  switch (size) {
+    case 'small':
+      return css`
+        font-size: 5px;
+      `;
+    case 'medium':
+      return css`
+        font-size: 10px;
+      `;
+    case 'large':
+      return css`
+        font-size: 16px;
+      `;
+    default:
+      return css`
+        font-size: 14px;
+      `;
+  }
+};
+
+export const StyledButton = styled.button<ButtonSizeProps>`
+  ${({ size }) => {
+    return buttonSizeChanger(size);
+  }}
   color: #fff;
   border-radius: 5px;
-  padding: 10px 25px;
+  padding: 0.7em 2.5em;
   font-family: 'Lato', sans-serif;
   font-weight: 500;
   background: transparent;
@@ -19,6 +47,10 @@ export const StyledButton = styled.button`
   border: none;
   color: #000;
   font-weight: bold;
+
+  :disabled {
+    opacity: 0.1;
+  }
 
   :after {
     position: absolute;

@@ -1,13 +1,18 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Game } from '../pages/Game';
-import { Entry } from '../pages/Entry';
+import { CharacterSelection } from './CharacterSelection';
+import { Introduction } from './Introduction';
 
 export const App = () => {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path={`/`} element={<Entry />} />
+          <Route path={`/`} element={<Introduction />} />
+          <Route
+            path={`/CharacterSelection`}
+            element={<CharacterSelection />}
+          />
           <Route path={`/GameStart`} element={<Game />} />
         </Routes>
       </BrowserRouter>
