@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../../common/Button';
-import { LottiePath } from '../../types';
+import { LottiePath } from '../../../types';
 import { useSugorokuState } from '../../../contexts';
-import { Lottie } from '../../Lottie';
+import { Lottie } from '../../common/Lottie';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';

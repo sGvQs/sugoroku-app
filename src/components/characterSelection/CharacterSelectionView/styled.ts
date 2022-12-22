@@ -24,7 +24,7 @@ export const StyledFinalContents = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 3vw;
+  gap: 2vw;
 `;
 
 export const StyledFinalSideContent = styled.div`

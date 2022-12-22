@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Button } from '../../components/common/Button';
-import { Lottie } from '../../components/Lottie';
+import { Lottie } from '../../components/common/Lottie';
 import { StyledBody, StyledContentWrap, StyledContents } from './styled';
-import { LottiePath } from '../../components/types';
+import { LottiePath } from '../../types';
 
 export const Introduction = () => {
   return (

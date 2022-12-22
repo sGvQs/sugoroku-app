@@ -1,4 +1,4 @@
-import { LottiePath } from '../../types';
+import { LottiePath } from '../../../types';
 import React from 'react';
 import { RatingDifficality } from '../../common/Rating';
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { CharacterDiscriptions } from '../CharacterDiscription';
 import { Button } from '../../common/Button';
-import { Lottie } from '../../Lottie';
-import { LottiePath } from '../../types';
+import { Lottie } from '../../common/Lottie';
+import { LottiePath } from '../../../types';
 import {
   StyledCharacterSelectionWarp,
   StyledCharactorDiv,

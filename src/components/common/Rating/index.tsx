@@ -15,7 +15,6 @@ export const RatingDifficality: React.FC<RatingDifficalityProps> = ({
   return (
     <Box
       sx={{
-        width: 200,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

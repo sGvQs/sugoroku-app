@@ -9,3 +9,11 @@ export enum LottiePath {
   THIN_RUN = '/Lottie/stylish-walking.json',
   ANGRY_RUN = '/Lottie/angry-wizard.json',
 }
+
+export type OptionSelectionObject = {
+  option1?: string;
+  option2?: string;
+  option3?: string;
+  option4?: string;
+  option5?: string;
+};
