@@ -9,6 +9,7 @@ export const StyledContentWrap = styled.div`
   height: 100vh;
   width: 100vw;
   background-color: #f5f5f5;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;

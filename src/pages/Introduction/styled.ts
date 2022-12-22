@@ -8,6 +8,7 @@ export const StyledBody = styled.div`
 export const StyledContentWrap = styled.div`
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
   background-color: #f5f5f5;
   display: flex;
   justify-content: center;
